@@ -21,5 +21,6 @@ public class NamePicker : MonoBehaviour
     public void ReadStringInput(string s)
     {
         input = s;
+        MenuManager.Instance.Name = s;
     }
 }

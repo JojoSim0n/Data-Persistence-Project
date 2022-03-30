@@ -8,7 +8,11 @@ public class MenuManager : MonoBehaviour
 
     public static MenuManager Instance;
     public string Name;
+    public string BestName;
     public int Score;
+    public int BestScore;
+
+
 
     private void Awake()
     {
@@ -21,6 +25,7 @@ public class MenuManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
         loadGameState();
+
     }
 
     [System.Serializable]
@@ -33,8 +38,8 @@ public class MenuManager : MonoBehaviour
     public void SaveGameState()
     {
         SaveData data = new SaveData();
-        data.Name = Name;
-        data.Score = Score;
+        data.Name = BestName;
+        data.Score = BestScore;
 
         string json = JsonUtility.ToJson(data);
 
@@ -49,8 +54,10 @@ public class MenuManager : MonoBehaviour
         {
             string json = File.ReadAllText(path);
             SaveData data = JsonUtility.FromJson<SaveData>(json);
-            Name = data.Name;
-            Score = data.Score;
+            BestName = data.Name;
+            BestScore = data.Score;
         }
     }
+
+   
 }
